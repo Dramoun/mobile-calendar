@@ -1,4 +1,5 @@
-import { Modal, View, StyleSheet, Pressable } from "react-native";
+import { Modal, View, StyleSheet, Pressable, Animated } from "react-native";
+import { useEffect, useRef } from "react";
 import SettingsScreen from "../screens/SettingsScreen";
 
 type Props = {
@@ -7,17 +8,32 @@ type Props = {
 };
 
 export default function SettingsSheet({ visible, onClose }: Props) {
+  const translateX = useRef(new Animated.Value(400)).current;
+
+  useEffect(() => {
+    Animated.timing(translateX, {
+      toValue: visible ? 0 : 400,
+      duration: 220,
+      useNativeDriver: true,
+    }).start();
+  }, [visible]);
+
   return (
     <Modal
       visible={visible}
       transparent
-      animationType="slide"
+      animationType="none"
       onRequestClose={onClose}
     >
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <View style={styles.sheet}>
+        <Animated.View
+          style={[
+            styles.sheet,
+            { transform: [{ translateX }] },
+          ]}
+          >
           <SettingsScreen />
-        </View>
+        </Animated.View>
       </Pressable>
     </Modal>
   );
@@ -33,6 +49,7 @@ const styles = StyleSheet.create({
   sheet: {
     width: "90%",
     backgroundColor: "#111",
+    height: "100%",
   },
 });
 

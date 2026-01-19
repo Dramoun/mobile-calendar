@@ -15,16 +15,20 @@ export default function DateNavigator({
 }: Props) {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onPrev} style={styles.arrow}>
-        <Text style={styles.arrowText}>◀</Text>
-      </Pressable>
+      {/* Top row: navigation */}
+      <View style={styles.navRow}>
+        <Pressable onPress={onPrev} style={styles.arrow}>
+          <Text style={styles.arrowText}>◀</Text>
+        </Pressable>
 
-      <Text style={styles.label}>{label}</Text>
+        <Text style={styles.label}>{label}</Text>
 
-      <Pressable onPress={onNext} style={styles.arrow}>
-        <Text style={styles.arrowText}>▶</Text>
-      </Pressable>
+        <Pressable onPress={onNext} style={styles.arrow}>
+          <Text style={styles.arrowText}>▶</Text>
+        </Pressable>
+      </View>
 
+      {/* Bottom row: today */}
       {onToday && (
         <Pressable onPress={onToday} style={styles.todayButton}>
           <Text style={styles.todayText}>Present</Text>
@@ -36,14 +40,17 @@ export default function DateNavigator({
 
 const styles = StyleSheet.create({
   container: {
-    height: 48,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    paddingVertical: 8,
     paddingHorizontal: 12,
     backgroundColor: "#111",
     borderBottomWidth: 1,
     borderBottomColor: "#222",
+    gap: 6,
+  },
+  navRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   arrow: {
     padding: 8,
@@ -58,13 +65,16 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   todayButton: {
-    padding: 6,
-    backgroundColor: "#3b82f6",
-    borderRadius: 4,
+    alignSelf: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    backgroundColor: "#222",
+    borderRadius: 6,
   },
   todayText: {
-    color: "#fff",
+    color: "#3b82f6",
     fontSize: 12,
+    fontWeight: "500",
   },
 });
 

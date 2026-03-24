@@ -8,9 +8,9 @@ This app is for personal use, allowing you to track events, tasks, notes, and re
 
 ## **Features**
 
-- Create, update, delete calendar items (events, notes, tasks)  
-- Assign tags and types to items  
-- Local reminders stored in SQLite  
+- Create, update calendar items (events, notes, tasks) (delete in the future) 
+- Assign tags and types to items  (adding custom tags and types in the future)
+- Local reminders stored in SQLite  (feature not implemented yet)
 - Data persists across app updates  
 - Fully offline and works without Expo Go when built locally  
 

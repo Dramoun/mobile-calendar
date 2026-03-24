@@ -1,0 +1,38 @@
+export type CalendarItemType = {
+  id: string,
+  name: string,
+};
+
+export type TagType = {
+  id: string,
+  name: string,
+  color: string,
+};
+
+export interface CalendarItemFormat {
+  id: string;
+  title: string;
+  description?: string;
+  date: Date;
+  startTime: string;
+  endTime?: string;
+  type: CalendarItemType;
+  createAt: Date;
+  updatedAt?: Date;
+  tags?: TagType[];
+  itemColor?: string;
+}
+
+export interface ReminderItemFormat {
+  id: string;
+  itemId: string;
+  offsetMinites: number;
+  notificationId: string;
+}
+
+export type Reminder = {
+  id: string;
+  itemId: string;
+  offsetMinutes: number;
+  notificationId: string;
+}
